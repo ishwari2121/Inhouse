@@ -1,16 +1,11 @@
+import AppRoutes from "./routes/AppRoutes";
 
-import './App.css'
-
-function App() {
-
+const App = () => {
   return (
-    <>
-      <div className='bg-yellow-500'>
-        <h1>hello</h1>
-      </div>
-        
-    </>
-  )
-}
+    <div className="font-sans">
+      <AppRoutes />
+    </div>
+  );
+};
 
-export default App
+export default App;
