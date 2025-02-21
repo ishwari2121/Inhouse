@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 
 const Signup = () => {
-  const [formData, setFormData] = useState({ name: "", email: "", password: "" });
+  const [formData, setFormData] = useState({ username: "", email: "", password: "" });
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -28,7 +28,7 @@ const Signup = () => {
         <form onSubmit={handleSubmit} className="space-y-4">
           <input 
             type="text" 
-            name="name" 
+            name="username" 
             placeholder="Full Name" 
             onChange={handleChange} 
             required 

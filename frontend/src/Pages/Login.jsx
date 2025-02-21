@@ -1,13 +1,18 @@
-import React, { useState } from "react";
+import React, { useState,useContext  } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
+import { AuthContext } from "../context/AuthContext";
+
 
 const Login = () => {
+  const { login } = useContext(AuthContext);
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
-
-  const [message, setMessage] = useState("");
 
   // Handle input changes
   const handleChange = (e) => {
@@ -16,13 +21,14 @@ const Login = () => {
 
   // Handle form submission
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevent page reload
-
+    e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:5000/api/auth/login", formData);
-      setMessage(response.data.message);
+      const res = await axios.post("http://localhost:5000/api/auth/login", formData);
+      console.log("Login Response:", res.data);
+      login(res.data.user);
+      navigate(res.data.user.role === "admin" ? "/admin" : "/student");
     } catch (error) {
-      setMessage(error.response?.data?.message || "Login failed");
+      alert("Login failed");
     }
   };
 
@@ -31,7 +37,6 @@ const Login = () => {
       <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
         <h2 className="text-2xl font-semibold text-center mb-4">Welcome Back</h2>
         
-        {message && <p className="text-center text-sm text-red-500">{message}</p>}
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <input 
