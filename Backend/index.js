@@ -3,13 +3,15 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
 import authRoutes from "./routes/authRoutes.js";
-
+import companyRoutes from './routes/companyRoutes.js'
 dotenv.config();
 
 const app = express();
 app.use(express.json()); 
 app.use(cors()); 
 app.use("/api/auth", authRoutes);
+app.use("/api/companies", companyRoutes);
+
 
 mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log("MongoDB Connected"))

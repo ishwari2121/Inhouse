@@ -16,9 +16,20 @@ const AuthProvider = ({ children }) => {
 
   // Login function
   const login = (userData) => {
-    setUser(userData);
-    localStorage.setItem("user", JSON.stringify(userData));
+    console.log("Login Response in AuthContext:", userData); // Debugging line
+  
+    if (!userData.token) {
+      console.error("No token received!");
+      return;
+    }
+    const newUser = { ...userData.user, token: userData.token }; // ✅ Store token
+    console.log("Updated User Data:", newUser); // Check stored user object
+  
+    setUser(newUser);
+    localStorage.setItem("user", JSON.stringify(newUser));
   };
+  
+  
 
   // Logout function
   const logout = () => {

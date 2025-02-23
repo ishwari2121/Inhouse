@@ -25,7 +25,7 @@ const Login = () => {
     try {
       const res = await axios.post("http://localhost:5000/api/auth/login", formData);
       console.log("Login Response:", res.data);
-      login(res.data.user);
+      login(res.data);
       navigate(res.data.user.role === "admin" ? "/admin" : "/student");
     } catch (error) {
       alert("Login failed");
