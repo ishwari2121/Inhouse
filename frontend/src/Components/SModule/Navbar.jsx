@@ -48,7 +48,7 @@ export default function Navbar() {
         <div className="flex flex-col h-full justify-between p-6">
             <div className='flex flex-col gap-3'>
                 <button className="px-4 py-2 w-full text-lg bg-gray-200 rounded hover:bg-gray-300">Profile</button>
-                <button className="px-4 py-2 w-full text-lg bg-gray-200 rounded hover:bg-gray-300">View all companies</button>
+                <Link to="/view" className="px-4 py-2 w-full text-lg bg-gray-200 rounded hover:bg-gray-300 text-center flex justify-center">View all companies</Link>
             </div>
           <button className="px-4 py-2 w-full text-lg bg-red-500 text-white rounded hover:bg-red-600">Logout</button>
         </div>

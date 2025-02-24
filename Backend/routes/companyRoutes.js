@@ -28,9 +28,9 @@ router.post("/create", authMiddleware, async (req, res) => {
   }
 });
 
-router.get("/all", async (req, res) => {
+router.get("/view", async (req, res) => {
   try {
-    const companies = await Company.find();
+    const companies = await Company.find().populate("createdBy", "username email"); // Fetch with admin details
     res.status(200).json(companies);
   } catch (error) {
     res.status(500).json({ message: "Error fetching companies", error });
