@@ -1,6 +1,6 @@
-import React, { useState,useContext } from 'react'
+import React, { useState,useContext,useEffect } from 'react'
 import { Link } from "react-router-dom";
-import { Menu ,X } from "lucide-react";
+import { Menu ,X,Search } from "lucide-react";
 import { AuthContext } from "../../context/AuthContext";
 
 
@@ -8,6 +8,34 @@ export default function Navbar() {
 
     const [isOpen, setIsOpen] = useState(false); 
     const { user, logout } = useContext(AuthContext);
+    const [query, setQuery] = useState("");
+      const [companies, setCompanies] = useState([]);
+      const [loading, setLoading] = useState(false);
+    
+      // Fetch companies from backend
+      useEffect(() => {
+        if (query.length < 2) {
+          setCompanies([]);
+          return;
+        }
+    
+        const fetchCompanies = async () => {
+          setLoading(true);
+          try {
+            const res = await fetch(`http://localhost:5000/api/companies/search?q=${query}`);
+            const data = await res.json();
+            setCompanies(data);
+          } catch (error) {
+            console.error("Error fetching companies:", error);
+          }
+          setLoading(false);
+        };
+    
+        // Debounce API calls (waits 300ms after last input)
+        const timeout = setTimeout(fetchCompanies, 300);
+        return () => clearTimeout(timeout);
+      }, [query]);
+    
 
     return (
 
@@ -22,13 +50,38 @@ export default function Navbar() {
           </div>
     
           {/* Middle Section: Search Input */}
-          <div className="flex-1 mx-4 max-w-md">
-            <input
-              type="text"
-              placeholder="Search..."
-              className="w-full p-2 rounded-lg border border-black-300"
-            />
-          </div>
+        <div className="relative flex-1 mx-4 max-w-md">
+          <Search className="absolute left-3 top-2 text-gray-500" />
+          <input
+            type="text"
+            placeholder="Search companies..."
+            className="w-full p-2 pl-10 rounded-lg border border-black-300"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
+
+          {/* Search Results Dropdown */}
+          {query && (
+            <div className="absolute mt-2 bg-white text-black rounded-lg shadow-lg w-full">
+              {loading ? (
+                <p className="p-2 text-gray-500">Loading...</p>
+              ) : companies.length > 0 ? (
+                companies.map((company) => (
+                  <Link
+                    key={company._id}
+                    to={`/company/${company._id}`} // Redirect to company details page
+                    className="block p-2 hover:bg-gray-100"
+                  >
+                    <p className="font-bold">{company.name}</p>
+                    <p className="text-sm text-gray-600">{company.location}</p>
+                  </Link>
+                ))
+              ) : (
+                <p className="p-2 text-gray-500">No results found</p>
+              )}
+            </div>
+          )}
+        </div>
     
           {/* Right Section: Links */}
           <div className="flex items-center space-x-4">

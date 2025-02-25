@@ -50,4 +50,38 @@ router.delete("/:id", authMiddleware, async (req, res) => {
   }
 });
 
+
+router.get("/search", async (req, res) => {
+  const { q } = req.query; // Get search query
+
+  if (!q) return res.json([]); // Return empty array if no query provided
+
+  try {
+    const companies = await Company.find({
+      $or: [
+        { name: { $regex: q, $options: "i" } }, // Search by name
+        { description: { $regex: q, $options: "i" } }, // Search by description
+        { location: { $regex: q, $options: "i" } }, // Search by location
+      ],
+    }).limit(10); // Limit results to improve performance
+
+    res.json(companies);
+  } catch (error) {
+    console.error("Error fetching companies:", error);
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
+router.get("/:id", async (req, res) => {
+  try {
+    const company = await Company.findById(req.params.id);
+    if (!company) return res.status(404).json({ message: "Company not found" });
+    res.json(company);
+  } catch (error) {
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
+
+
 export default router;
