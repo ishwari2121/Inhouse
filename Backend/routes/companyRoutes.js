@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.post("/create", authMiddleware, async (req, res) => {
   try {
-    const { name, description, location, CGPAReq, website } = req.body;
+    const { name, description, location, cgpa, website, companyType, eligibleBranches, role, companyCriteria, stipend, studentsPlaced, linkedinProfiles } = req.body;
 
     if (!req.user || req.user.role !== "admin") {
       return res.status(403).json({ message: "Access denied" });
@@ -16,8 +16,15 @@ router.post("/create", authMiddleware, async (req, res) => {
       name,
       description,
       location,
-      CGPAReq,
+      cgpa,
       website,
+      companyType,
+      eligibleBranches,
+      role,
+      companyCriteria,
+      stipend,
+      studentsPlaced,
+      linkedinProfiles,
       createdBy: req.user.id,
     });
 
@@ -74,11 +81,13 @@ router.get("/search", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   try {
-    const company = await Company.findById(req.params.id);
-    if (!company) return res.status(404).json({ message: "Company not found" });
+    const company = await Company.findById(req.params.id).populate("createdBy", "username email");
+    if (!company) {
+      return res.status(404).json({ message: "Company not found" });
+    }
     res.json(company);
   } catch (error) {
-    res.status(500).json({ error: "Server error" });
+    res.status(500).json({ message: "Error fetching company details", error });
   }
 });
 
