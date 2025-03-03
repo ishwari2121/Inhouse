@@ -77,7 +77,7 @@ const Login = () => {
             </button>
           </form>
 
-          <NavLink to="/login/reset-password" onClick={handleForgot} className="text-blue-500 text-center block mt-2">
+          <NavLink onClick={handleForgot} className="text-blue-500 text-center block mt-2">
             Forgot Password?
           </NavLink>
 
