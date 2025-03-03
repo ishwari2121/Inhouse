@@ -15,7 +15,6 @@ const Profile = () => {
     <div className="flex min-h-screen items-center justify-center bg-gray-100">
       <div className="bg-white p-6 shadow-lg rounded-lg w-full max-w-md">
         <h2 className="text-2xl font-bold text-center mb-4">Profile</h2>
-        <h1>hello</h1>
         <div className="space-y-2">
           <p><strong>Username:</strong> {user.username || "N/A"}</p>
           <p><strong>Email:</strong> {user.email}</p>
