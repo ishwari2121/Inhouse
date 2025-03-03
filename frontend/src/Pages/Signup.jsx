@@ -1,6 +1,7 @@
 import { useState} from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import toast from 'react-hot-toast';
 
 const Signup = () => {
   const [formData, setFormData] = useState({ username: "", email: "", password: "" });
@@ -14,7 +15,7 @@ const Signup = () => {
     e.preventDefault();
     try {
       const res = await axios.post("http://localhost:5000/api/auth/signup", formData);
-      alert("Signup Successful");
+      toast.success("Signup Successful");
       console.log(res.data);
       navigate('/login')
     } catch (error) {

@@ -10,6 +10,7 @@ import Profile from './Pages/Profile';
 import Create from './Pages/Teacher/createcompany'
 import View from './Pages/viewcompanies'
 import CompanyDetails from "./Components/Companydetails";
+import  { Toaster } from 'react-hot-toast';
 const PrivateRoute = ({ children }) => {
   const { user } = useContext(AuthContext);
 
@@ -17,7 +18,8 @@ const PrivateRoute = ({ children }) => {
 }
 
 const App = () => (
-    <Routes>
+    <div>
+      <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
@@ -29,6 +31,8 @@ const App = () => (
       <Route path="/student" element={<PrivateRoute role="student"><StudentDashboard /></PrivateRoute>} />
 
     </Routes>
+    <Toaster/>
+    </div>
 );
 
 export default App;
