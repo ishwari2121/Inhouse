@@ -7,13 +7,12 @@ const ViewQues = () => {
     const [ques, setQues] = useState([]);
     const [loading, setLoading] = useState(true);
     const { id } = useParams();
-    const [openIndex, setOpenIndex] = useState(null); // Track the currently opened details
+    const [openIndex, setOpenIndex] = useState(null); 
 
     useEffect(() => {
         const fetchQues = async () => {
             try {
                 const res = await axios.get(`http://localhost:5000/api/question/view/${id}`);
-                console.log("API Response:", res.data);
                 setQues(res.data.data || []); 
             } catch (error) {
                 console.error("Error fetching questions:", error);
@@ -36,17 +35,18 @@ const ViewQues = () => {
                         <details 
                             key={que._id} 
                             className={`question-item ${openIndex === index ? 'open' : ''}`} 
-                            open={openIndex === index} // Ensure only one is open at a time
+                            open={openIndex === index}
                             onClick={(e) => {
-                                e.preventDefault(); // Prevent default toggle behavior
-                                setOpenIndex(openIndex === index ? null : index); // Toggle open/close
+                                e.preventDefault(); 
+                                setOpenIndex(openIndex === index ? null : index); 
                             }}
                         >
                             <summary>{index + 1}. {que.question}</summary>
                             <p><span id="ans-span">Answer</span><br/>{que.answer}</p>
                         </details>
                     ))
-                ) : (
+                ) : 
+                (
                     <p>No questions found.</p>
                 )}
             </div>
