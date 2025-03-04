@@ -29,6 +29,7 @@ const ViewQues = () => {
 
     return (
         <div className='view-container'>
+            
             <h1 id='heading'>All Questions And Answers</h1>
             <div className="all-ques">
                 {ques.length > 0 ? (
