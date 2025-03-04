@@ -37,3 +37,8 @@ textarea{
     font-size:large;
     border-radius: 10px;
 }
+
+#btn-post:hover{
+    transition: 0.2s all linear 0s;
+    background-color: blue;
+}

@@ -39,3 +39,8 @@
 #ans-span{
     color: rgb(81, 255, 0);
 }
+
+#btn-view:hover{
+    transition: 0.2s all linear 0s;
+    background-color: red;
+}

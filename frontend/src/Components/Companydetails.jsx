@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import '../Components/SModule/PostQue.css'
+import '../Components/SModule/ViewQues.css'
 
 const CompanyDetails = () => {
   const { id } = useParams();
@@ -61,8 +63,8 @@ const CompanyDetails = () => {
         <div className="mt-6 flex justify-between">
           <Link to="/view" className="text-blue-500">← Back to Company List</Link>
           <div>
-            <button className="mr-3 border p-1 rounded-lg bg-blue-300" onClick={(e)=>navigate(`/api/question/save/${id}`)}>Post Questions</button>
-            <button className="mr-3 border p-1 rounded-lg bg-red-300" onClick={(e)=>navigate(`/api/question/view/${id}`)} >View Questions</button>
+            <button className="mr-3 border p-1 rounded-lg bg-blue-300" id="btn-post" onClick={(e)=>navigate(`/api/question/save/${id}`)}>Post Questions</button>
+            <button className="mr-3 border p-1 rounded-lg bg-red-300" id="btn-view" onClick={(e)=>navigate(`/api/question/view/${id}`)} >View Questions</button>
           </div>
         </div>
       </div>
