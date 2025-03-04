@@ -59,7 +59,7 @@ const CompanyDetails = () => {
           </div>
         )}
         <div className="mt-6">
-          <Link to="/student" className="text-blue-500">← Back to Company List</Link>
+          <Link to="/view" className="text-blue-500">← Back to Company List</Link>
         </div>
       </div>
     </div>
