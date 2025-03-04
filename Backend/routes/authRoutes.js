@@ -18,7 +18,7 @@ router.get("/admin-data", authMiddleware, (req, res) => {
   res.json({ message: "Welcome Admin!" });
 });
 
-router.get("/student-data", authMiddleware, (req, res) => {
+router.get("/student-data", authMiddleware, async(req, res) => {
   if (req.user.role !== "student") {
     return res.status(403).json({ message: "Access Denied" });
   }
