@@ -38,15 +38,26 @@
     margin-bottom: 15px;
     border: 2px solid rgba(255, 255, 255, 0.1);
     border-radius: 15px;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(12px);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     position: relative;
     overflow: hidden;
+    transition: 
+    all 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.4s ease; 
 }
 
+.question-item.copied {
+    border-color: #51ff00 !important;
+    animation: borderPulse 0.8s ease-in-out;
+}
+@keyframes borderPulse {
+    0% { border-color: #51ff00; }
+    50% { border-color: rgba(81, 255, 0, 0.5); }
+    100% { border-color: #ff6b6b; }
+}
 .question-item::before {
     content: '';
     position: absolute;
