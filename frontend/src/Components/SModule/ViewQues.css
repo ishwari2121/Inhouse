@@ -1,32 +1,42 @@
-.view-container{
+.view-container {
     color: white;
     width: 100%;
     height: fit-content;
     padding: 20px;
+    overflow-x: hidden; 
 }
-#heading{
+
+#heading {
     font-size: 2rem;
     text-align: center;
     text-shadow: 2px 3px 8px red;
 }
-.all-ques{
+
+.all-ques {
     width: 80%;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
-.question-item{
+
+.question-item {
     padding: 10px;
     margin-bottom: 10px;
     border: 2px solid transparent;
     border-radius: 5px;
     transition: border 0.3s ease, background-color 0.3s ease;
+    word-wrap: break-word; 
+    overflow-wrap: break-word; 
+    white-space: pre-wrap;
+    width: 100%; 
+    overflow: hidden; 
 }
 
-.question-item:hover{
-    border: 2px solid blue; 
+.question-item:hover {
+    border: 2px solid blue;
 }
+
 .question-item > div {
     margin-top: 10px;
     padding-top: 10px;
@@ -36,23 +46,51 @@
 .question-item.open {
     border: 2px solid red;
 }
-#ans-span{
+
+#ans-span {
     color: rgb(81, 255, 0);
-}
-.ans-header{
-    display: flex;
-    justify-content: space-between;
-}
-.ans-header > button {
-    margin-right: 20px;
+    font-weight: bold;
 }
 
-#btn-view:hover{
+.ans-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ans-header > button {
+    margin-right: 20px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: white;
+}
+
+#btn-view:hover {
     transition: 0.2s all linear 0s;
     background-color: red;
 }
 
-.ans-header > button:hover > svg{
+.ans-header > button:hover > svg {
     transition: 0.1s all linear 0s;
     transform: scale(1.1);
+}
+
+details div {
+    white-space: pre-wrap; 
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+    overflow-x: auto; 
+}
+
+details pre {
+    white-space: pre-wrap; 
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    width: 100%;
+    overflow-x: auto; 
+    background-color: #222;
+    padding: 10px;
+    border-radius: 5px;
 }

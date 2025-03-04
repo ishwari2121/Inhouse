@@ -57,7 +57,7 @@ const ViewQues = () => {
                                     </svg></button>
                                 </div>  
                                 <br/>
-                                <p>{que.answer}</p>
+                                <p><pre>{que.answer}</pre></p>
                             </div>
                         </details>
                     ))
