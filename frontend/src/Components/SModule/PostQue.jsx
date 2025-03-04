@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./PostQue.css";
 import { useParams } from "react-router-dom";
-
+import toast  from 'react-hot-toast';
 const PostQue = () => {
   const [que, setQue] = useState("");
   const [ans, setAns] = useState("");
@@ -33,7 +33,7 @@ const PostQue = () => {
 
         const data = await response.json();
         if (response.ok) {
-            alert("Question posted successfully!");
+            toast.success("Question posted successfully!");
             setQue("");
             setAns("");
         } else {
@@ -41,7 +41,7 @@ const PostQue = () => {
         }
     } catch (error) {
         console.error("Error posting question:", error);
-        alert("Failed to post question. Try again later.");
+        toast.error("Failed to post question. Try again later.");
     }
 }
 
