@@ -1,0 +1,39 @@
+#main-container{
+    height: fit-content;
+    color : white;
+}
+body{
+    background-color: rgb(0, 0, 0);
+}
+.que-conatiner{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+#que,#ans{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+textarea{
+    border: 2px solid white;
+    padding: 4px;
+}
+.heading{
+    margin-top: 10px;
+    text-align: center;
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    text-shadow: 3px 2px 4px red;
+}
+#btn-submit{
+    border: 1px solid white;
+    padding: 6px;
+    background-color: red;
+    color: black;
+    font-size:large;
+    border-radius: 10px;
+}

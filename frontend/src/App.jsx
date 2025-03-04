@@ -12,6 +12,8 @@ import View from "./Pages/viewcompanies";
 import CompanyDetails from "./Components/Companydetails";
 import { Toaster } from "react-hot-toast";
 import ResetPassword from "./Pages/ResetPassword";
+import PostQue from "./Components/SModule/PostQue";
+import ViewQues from "./Components/SModule/ViewQues";
 
 // ✅ Create and export resetContext
 export const resetContext = createContext(null);
@@ -37,6 +39,8 @@ const App = () => {
           <Route path="/admin" element={<PrivateRoute role="admin"><AdminDashboard /></PrivateRoute>} />
           <Route path="/student" element={<PrivateRoute role="student"><StudentDashboard /></PrivateRoute>} />
           <Route path="/login/reset-password" element={<ResetPassword />} />
+          <Route path="/api/question/save/:id" element={<PostQue/>}/>
+          <Route path="/api/question/view/:id" element={<ViewQues/>}/>
         </Routes>
       <Toaster />
     </resetContext.Provider>

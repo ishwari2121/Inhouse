@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const CompanyDetails = () => {
   const { id } = useParams();
   const [company, setCompany] = useState(null);
   const [loading, setLoading] = useState(true);
-
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchCompanyDetails = async () => {
       try {
@@ -58,10 +58,15 @@ const CompanyDetails = () => {
             </ul>
           </div>
         )}
-        <div className="mt-6">
+        <div className="mt-6 flex justify-between">
           <Link to="/view" className="text-blue-500">← Back to Company List</Link>
+          <div>
+            <button className="mr-3 border p-1 rounded-lg bg-blue-300" onClick={(e)=>navigate(`/api/question/save/${id}`)}>Post Questions</button>
+            <button className="mr-3 border p-1 rounded-lg bg-red-300" onClick={(e)=>navigate(`/api/question/view/${id}`)} >View Questions</button>
+          </div>
         </div>
       </div>
+
     </div>
   );
 };
